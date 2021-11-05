@@ -6,6 +6,7 @@
 
   // eslint-disable-next-line no-undef
   const books = dataSource.books;
+  const filters = [];
 
   const render = function() {
     for(let book of books){
@@ -42,10 +43,8 @@
       console.log(favoriteBooks);
     });
 
-    const filters = [];
 
     const filterForm = document.querySelector('.filters');
-
 
     filterForm.addEventListener('click', function (event){
 
@@ -59,7 +58,30 @@
       }
 
       console.log(filters);
+
+      filterBooks();
     });
+  };
+
+  const filterBooks = function(){
+    for(let book of books){
+      let shouldBeHidden = false;
+
+      for(let filter of filters){
+        console.log(filter);
+        if(!book.details[filter]){
+          shouldBeHidden = true;
+          break;
+        }
+      }
+
+      const bookImage =  document.querySelector('.book__image[data-id="' + book.id + '"]');
+      if(shouldBeHidden == true){
+        bookImage.classList.add('hidden');
+      } else {
+        bookImage.classList.remove('hidden');
+      }
+    }
 
 
   };
