@@ -41,7 +41,30 @@
 
       console.log(favoriteBooks);
     });
+
+    const filters = [];
+
+    const filterForm = document.querySelector('.filters');
+
+
+    filterForm.addEventListener('click', function (event){
+
+      const filterValue = event.target.getAttribute('value');
+      const indexOf = filters.indexOf(filterValue);
+
+      if(event.target.checked){
+        filters.push(filterValue);
+      } else{
+        filters.splice(indexOf, 1);
+      }
+
+      console.log(filters);
+    });
+
+
   };
+
+
 
 
   render();
